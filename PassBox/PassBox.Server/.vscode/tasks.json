@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "on_swag",
+            "command": "swag",
+            "type": "shell",
+            "args": ["init"],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        },
+        {
+            "label": "on_wire",
+            "command": "wire",
+            "type": "shell",
+            "args": ["./..."],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        },
+        {
+            "label": "prepare",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "on_swag",
+                "on_wire"
+            ]
+        }
+    ]
+}

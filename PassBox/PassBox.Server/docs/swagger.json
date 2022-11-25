@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Данное API реализует функции управления паролями.",
+        "title": "PassBox API 1.0.",
+        "contact": {},
+        "license": {
+            "name": "GNU GPL v3.0",
+            "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:5001",
+    "basePath": "/api/v1",
+    "paths": {
+        "/folders/": {
+            "get": {
+                "description": "Предоставляет список папок",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "folders"
+                ],
+                "summary": "Список папок",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.Folder"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/helper.HTTPError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/helper.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/helper.HTTPError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.Folder": {
+            "description": "Папка",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Идентификатор",
+                    "type": "string",
+                    "example": "9b4dc8d9-6da7-40c5-b7b1-30e81edca64d"
+                },
+                "name": {
+                    "description": "Название",
+                    "type": "string",
+                    "example": "folder name"
+                }
+            }
+        },
+        "helper.HTTPError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 400
+                },
+                "message": {
+                    "type": "string",
+                    "example": "status bad request"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BasicAuth": {
+            "type": "basic"
+        }
+    }
+}
